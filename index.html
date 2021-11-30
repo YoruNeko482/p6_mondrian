@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mondrian</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <style type="text/css">
+        html{
+            height: 100%;
+        }
+        
+        .container{
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(10, 100px);
+        border: black;
+        border-width:0.2em;
+        border-style: groove;
+        background-color: rgba(253, 202, 60, 0.712);
+        /*per tenir-ho en tota la pantalla borrar altura i amplaria i cambiar el segon 1fr per 100%*/
+        }
+        
+        div>div{
+            border: black;
+            border-width: 0.2em;
+            border-style: groove;
+        }
+        ul li{
+        list-style-type: none;
+        }
+        a{
+            text-decoration: none;
+            font-size: 2em;
+        }
+        .esbos{
+            border-width: 0em;
+        }
+        .esbos li{
+            font-family: 'Oswald', sans-serif;
+            color: black;
+        }
+        #n1{
+            grid-column: 1/2;
+            grid-row: 1/5;
+            background-color: black;
+        }
+        #r1{
+            grid-column: 2/4;
+            grid-row: 2/5;
+            background-color: red;
+        }
+        #c1{
+            grid-column: 4/6;
+            grid-row: 3/5;
+            background-color: salmon;
+        }
+        #c2{
+            grid-column: 6/9;
+            grid-row: 2/4;
+            background-color: salmon;
+        }
+        #c3{
+            grid-column: 1/2;
+            grid-row: 5/11;
+            background-color: salmon;
+        }
+        #b1{
+            grid-column: 2/6;
+            grid-row: 5/8;
+            background-color: blue;
+        }
+        #g1{
+            grid-column: 6/10;
+            grid-row: 4/8;
+            background-color: yellow;
+        }
+        #b2{
+            grid-column: 10/11;
+            grid-row: 4/5;
+            background-color: blue;
+        }
+        /*#g2{
+            grid-column: 13/15;
+            grid-row: 2/5;
+            background-color: yellow;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }*/
+        #n2{
+            grid-column: 2/6;
+            grid-row: 8/11;
+            background-color: black;
+        }
+        #c4{
+            grid-column: 6/9;
+            grid-row: 8/11;
+            background-color: salmon;
+        }
+        #n3{
+            grid-column: 9/11;
+            grid-row: 8/11;
+            background-color: black;
+        }
+       /* #r2{
+            grid-column: 13/14;
+            grid-row: 5/13;
+            background-color: red;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #c5{
+            grid-column: 14/15;
+            grid-row: 5/13;
+            background-color: salmon;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #r3{
+            grid-column: 3/6;
+            grid-row: 11/15;
+            background-color: red;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #c6{
+            grid-column: 6/9;
+            grid-row: 11/13;
+            background-color: salmon;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #b3{
+            grid-column: 6/10;
+            grid-row: 13/15;
+            background-color: blue;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #g3{
+            grid-column: 10/13;
+            grid-row: 13/15;
+            background-color: yellow;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #c7{
+            grid-column: 1/3;
+            grid-row: 14/16;
+            background-color: salmon;
+            border: black;
+            border-width:2mm;
+            border-style: groove;
+        }
+        #n4{
+            grid-column: 4/10;
+            grid-row: 15/16;
+            background-color: black;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #c8{
+            grid-column: 13/15;
+            grid-row: 13/16;
+            background-color: salmon;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        */
+        #A{
+            grid-column: 2/4;
+            grid-row: 1/2;
+            background-color: rgba(253, 202, 60, 0.712);
+        }
+        #B{
+            grid-column: 4/6;
+            grid-row: 1/3;
+            background-color: rgba(253, 202, 60, 0.712);
+        }
+        #C{
+            grid-column: 6/9;
+            grid-row: 1/2;
+            background-color: rgba(253, 202, 60, 0.712);
+
+        }
+        #D{
+            grid-column: 9/11;
+            grid-row: 1/4;
+            background-color: rgba(253, 202, 60, 0.712);
+        }
+        #E{
+            grid-column: 10/11;
+            grid-row: 5/8;
+            background-color: rgba(253, 202, 60, 0.712);
+        }
+        
+    @media(max-width:1024px){
+        
+        .container{
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(13, 100px);
+        }
+        
+        #n1{
+            grid-column: 1/2;
+            grid-row: 1/5;
+            
+        }
+        #r1{
+            grid-column: 2/4;
+            grid-row: 2/5;
+           
+        }
+        #c1{
+            grid-column: 4/6;
+            grid-row: 3/5;
+            
+        }
+        #c2{
+            grid-column: 6/8;
+            grid-row: 1/4;
+          
+        }
+        #c3{
+            grid-column: 1/2;
+            grid-row: 5/11;
+     
+        }
+        #b1{
+            grid-column: 2/6;
+            grid-row: 6/9;
+         
+        }
+        #g1{
+            grid-column: 2/6;
+            grid-row: 9/11;
+           
+        }
+        #b2{
+            grid-column: 6/8;
+            grid-row: 4/5;
+           
+        }
+        /*#g2{
+            grid-column: 13/15;
+            grid-row: 2/5;
+            background-color: yellow;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }*/
+        #n2{
+            grid-column: 1/6;
+            grid-row: 11/14;
+           
+        }
+        #c4{
+            grid-column: 6/8;
+            grid-row: 11/14;
+           
+        }
+        #n3{
+            grid-column: 6/8;
+            grid-row: 9/11;
+           
+        }
+       /* #r2{
+            grid-column: 13/14;
+            grid-row: 5/13;
+            background-color: red;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #c5{
+            grid-column: 14/15;
+            grid-row: 5/13;
+            background-color: salmon;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #r3{
+            grid-column: 3/6;
+            grid-row: 11/15;
+            background-color: red;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #c6{
+            grid-column: 6/9;
+            grid-row: 11/13;
+            background-color: salmon;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #b3{
+            grid-column: 6/10;
+            grid-row: 13/15;
+            background-color: blue;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #g3{
+            grid-column: 10/13;
+            grid-row: 13/15;
+            background-color: yellow;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #c7{
+            grid-column: 1/3;
+            grid-row: 14/16;
+            background-color: salmon;
+            border: black;
+            border-width:2mm;
+            border-style: groove;
+        }
+        #n4{
+            grid-column: 4/10;
+            grid-row: 15/16;
+            background-color: black;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #c8{
+            grid-column: 13/15;
+            grid-row: 13/16;
+            background-color: salmon;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        */
+        #A{
+            grid-column: 2/4;
+            grid-row: 1/2;
+           
+        }
+        #B{
+            grid-column: 4/6;
+            grid-row: 1/3;
+          
+        }
+        #C{
+            grid-column: 2/5;
+            grid-row: 5/6;
+            
+
+        }
+        #D{
+            grid-column: 6/8;
+            grid-row: 6/9;
+           
+        }
+        #E{
+            grid-column: 5/8;
+            grid-row: 5/6;
+            
+        }
+    }
+    @media (max-width:600px){
+        
+        .container{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(24, 100px);
+        }
+        #n1{
+            grid-column: 1/2;
+            grid-row: 1/5;
+            
+        }
+        #r1{
+            grid-column: 2/4;
+            grid-row: 2/5;
+           
+        }
+        #c1{
+            grid-column: 4/5;
+            grid-row: 3/5;
+            
+        }
+        #c2{
+            grid-column: 1/3;
+            grid-row: 14/18;
+          
+        }
+        #c3{
+            grid-column: 1/2;
+            grid-row: 5/11;
+     
+        }
+        #b1{
+            grid-column: 2/5;
+            grid-row: 6/9;
+         
+        }
+        #g1{
+            grid-column: 3/5;
+            grid-row: 14/19;
+           
+        }
+        #b2{
+            grid-column: 1/3;
+            grid-row: 18/19;
+           
+        }
+        /*#g2{
+            grid-column: 13/15;
+            grid-row: 2/5;
+            background-color: yellow;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }*/
+        #n2{
+            grid-column: 2/5;
+            grid-row: 9/14;
+           
+        }
+        #c4{
+            grid-column: 1/5;
+            grid-row: 19/22;
+           
+        }
+        #n3{
+            grid-column: 1/4;
+            grid-row: 22/25;
+           
+        }
+       /* #r2{
+            grid-column: 13/14;
+            grid-row: 5/13;
+            background-color: red;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #c5{
+            grid-column: 14/15;
+            grid-row: 5/13;
+            background-color: salmon;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #r3{
+            grid-column: 3/6;
+            grid-row: 11/15;
+            background-color: red;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #c6{
+            grid-column: 6/9;
+            grid-row: 11/13;
+            background-color: salmon;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #b3{
+            grid-column: 6/10;
+            grid-row: 13/15;
+            background-color: blue;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #g3{
+            grid-column: 10/13;
+            grid-row: 13/15;
+            background-color: yellow;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #c7{
+            grid-column: 1/3;
+            grid-row: 14/16;
+            background-color: salmon;
+            border: black;
+            border-width:2mm;
+            border-style: groove;
+        }
+        #n4{
+            grid-column: 4/10;
+            grid-row: 15/16;
+            background-color: black;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        }
+        #c8{
+            grid-column: 13/15;
+            grid-row: 13/16;
+            background-color: salmon;
+            border: black;
+            border-width: 2mm;
+            border-style: groove;
+        */
+        #A{
+            grid-column: 2/4;
+            grid-row: 1/2;
+           
+        }
+        #B{
+            grid-column: 4/5;
+            grid-row: 1/3;
+          
+        }
+        #C{
+            grid-column: 2/5;
+            grid-row: 5/6;
+            
+
+        }
+        #D{
+            grid-column: 1/2;
+            grid-row: 11/14;
+           
+        }
+        #E{
+            grid-column: 4/5;
+            grid-row: 22/25;
+            
+        }
+    }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <div id="n1"></div>
+        <div id="r1">
+            <div class="esbos">
+            <ul>
+            <a href="pags/esbos_escritori.html"><li>esbós escritori</li></a>
+            <a href="pags/esbos_tablet.html"><li>esbós tablet</li></a>
+            <a href="pags/esbos_movil.html"><li>esbós mòvil</li></a>
+            </ul>
+            </div>
+        </div>
+        <div id="c1"></div>
+        <div id="c2"></div>
+        <div id="c3"></div>
+        <div id="b1"></div>
+        <div id="g1"></div>
+        <div id="b2"></div>
+        
+        <div id="n2"></div>
+        <div id="c4"></div>
+        <div id="n3"></div>
+    <!--<div id="r2"></div>
+        <div id="c5"></div>
+        <div id="r3"></div>
+        <div id="c6"></div>
+        <div id="b3"></div>
+        <div id="g3"></div>
+        <div id="c7"></div>
+        <div id="n4"></div>
+        <div id="c8"></div>-->
+        <div id="A"></div>
+        <div id="B"></div>
+        <div id="C"></div>
+        <div id="D"></div>
+        <div id="E"></div>
+    </div>  
+</body>
+</html>
